@@ -45,7 +45,7 @@ public class Menu extends BaseEntity implements Serializable {
     @NotEmpty
     @Valid
     @CollectionTable(name = "dish", joinColumns = @JoinColumn(name = "menu_id"),
-            uniqueConstraints = {@UniqueConstraint(columnNames = {"menu_id", "name"}, name = "dish_unique_menu_name_idx")})
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"menu_id", "dishName"}, name = "dish_unique_menu_name_idx")})
     @ElementCollection(fetch = FetchType.EAGER)
     @JoinColumn(name = "menu_id")
     @OnDelete(action = OnDeleteAction.CASCADE)

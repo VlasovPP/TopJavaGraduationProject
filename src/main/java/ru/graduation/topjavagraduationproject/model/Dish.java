@@ -23,10 +23,10 @@ public class Dish {
 
     @NotBlank
     @Size(min = 2, max = 128)
-    @Column(name = "name", nullable = false)
-    private String name;
+    @Column(name = "dishName", nullable = false)
+    private String dishName;
 
     @Min(1)
-    @Column(name = "price", nullable = false)
-    private int price;
+    @Column(name = "dishPrice", nullable = false)
+    private int dishPrice;
 }
