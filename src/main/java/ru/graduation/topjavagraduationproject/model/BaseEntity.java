@@ -1,5 +1,6 @@
 package ru.graduation.topjavagraduationproject.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,6 +31,7 @@ public abstract class BaseEntity implements Persistable<Integer> {
         return id;
     }
 
+    @JsonIgnore
     @Override
     public boolean isNew() {
         return id == null;
