@@ -1,5 +1,6 @@
 package ru.graduation.topjavagraduationproject.web;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -30,7 +31,7 @@ import java.util.List;
 @RequestMapping(value = "/api/user/restaurant/vote")
 @AllArgsConstructor
 @Slf4j
-
+@Tag(name = "Vote Controller")
 public class VoteController {
 
     private final VoteRepository voteRepository;

@@ -1,5 +1,6 @@
 package ru.graduation.topjavagraduationproject.web;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.crossstore.ChangeSetPersister;
@@ -25,6 +26,7 @@ import java.time.LocalDate;
 @RequestMapping(value = "/api")
 @AllArgsConstructor
 @Slf4j
+@Tag(name = "Menu Controller")
 public class MenuController {
 
     private final MenuRepository menuRepository;

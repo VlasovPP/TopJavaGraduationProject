@@ -1,5 +1,6 @@
 package ru.graduation.topjavagraduationproject.web;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.hateoas.MediaTypes;
@@ -22,6 +23,7 @@ import java.util.List;
 @RequestMapping(value = "/api")
 @AllArgsConstructor
 @Slf4j
+@Tag(name = "Restaurant Controller")
 public class RestaurantController {
 
     private final RestaurantRepository restaurantRepository;

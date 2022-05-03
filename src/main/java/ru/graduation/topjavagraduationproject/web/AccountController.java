@@ -2,6 +2,7 @@ package ru.graduation.topjavagraduationproject.web;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,7 @@ import java.util.Set;
 @RequestMapping(value = "/api/account")
 @AllArgsConstructor
 @Slf4j
+@Tag(name = "Account Controller")
 public class AccountController {
 
     private final UserRepository userRepository;
