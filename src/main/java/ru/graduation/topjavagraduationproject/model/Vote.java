@@ -29,6 +29,12 @@ import java.time.LocalDate;
 @Proxy(lazy = false)
 public class Vote extends BaseEntity implements Serializable {
 
+    public Vote(Integer id, LocalDate date, User user, Restaurant restaurant) {
+        this.id = id;
+        this.date = date;
+        this.user = user;
+        this.restaurant = restaurant;
+    }
     @NotNull
     @Column(name = "voted", nullable = false)
     private LocalDate date = LocalDate.now();

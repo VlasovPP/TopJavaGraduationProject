@@ -37,6 +37,7 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString(callSuper = true, exclude = {"password"})
 public class User extends BaseEntity implements Serializable {
+
     public User(Integer id, String email, String firstName, String lastName, String password, Collection<Role> roles) {
         this(email, firstName, lastName, password, EnumSet.copyOf(roles));
         this.id = id;

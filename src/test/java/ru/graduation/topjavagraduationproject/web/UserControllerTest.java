@@ -15,10 +15,7 @@ import ru.graduation.topjavagraduationproject.repository.UserRepository;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static ru.graduation.topjavagraduationproject.UserTestUtil.ADMIN_ID;
-import static ru.graduation.topjavagraduationproject.UserTestUtil.ADMIN_MAIL;
-import static ru.graduation.topjavagraduationproject.UserTestUtil.USER_ID;
-import static ru.graduation.topjavagraduationproject.UserTestUtil.USER_MAIL;
+import static ru.graduation.topjavagraduationproject.UserTestUtil.*;
 import static ru.graduation.topjavagraduationproject.util.JsonUtil.writeValue;
 
 
@@ -34,7 +31,8 @@ class UserControllerTest extends AbstractControllerTest {
         perform(MockMvcRequestBuilders.get(URL + USER_ID))
                 .andExpect(status().isOk())
                 .andDo(print())
-                .andExpect(content().contentTypeCompatibleWith(MediaTypes.HAL_JSON_VALUE));
+                .andExpect(content().contentTypeCompatibleWith(MediaTypes.HAL_JSON_VALUE))
+                .andExpect(jsonMatcher(user, UserTestUtil::assertNoIdEquals));
     }
 
     @Test
@@ -52,7 +50,8 @@ class UserControllerTest extends AbstractControllerTest {
         perform(MockMvcRequestBuilders.get(URL + "search/by-email?email=" + ADMIN_MAIL))
                 .andExpect(status().isOk())
                 .andDo(print())
-                .andExpect(content().contentTypeCompatibleWith(MediaTypes.HAL_JSON_VALUE));
+                .andExpect(content().contentTypeCompatibleWith(MediaTypes.HAL_JSON_VALUE))
+                .andExpect(jsonMatcher(admin, UserTestUtil::assertNoIdEquals));
     }
 
     @Test
@@ -78,7 +77,8 @@ class UserControllerTest extends AbstractControllerTest {
         perform(MockMvcRequestBuilders.post(URL)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(writeValue(newUser)))
-                .andExpect(status().isCreated());
+                .andExpect(status().isCreated())
+                .andExpect(jsonMatcher(newUser, UserTestUtil::assertNoIdEquals));
     }
 
     @Test
@@ -89,5 +89,6 @@ class UserControllerTest extends AbstractControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(writeValue(updated)))
                 .andExpect(status().isNoContent());
+        UserTestUtil.assertEquals(updated, userRepository.findById(USER_ID).orElseThrow());
     }
 }

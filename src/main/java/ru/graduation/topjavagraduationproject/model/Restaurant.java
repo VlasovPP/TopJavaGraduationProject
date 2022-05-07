@@ -21,6 +21,13 @@ import java.io.Serializable;
 @AllArgsConstructor
 @ToString(callSuper = true)
 public class Restaurant extends BaseEntity implements Serializable {
+
+    public Restaurant(Integer id, String name, String address) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+    }
+
     @Column(name = "name")
     @Size(max = 128)
     private String name;

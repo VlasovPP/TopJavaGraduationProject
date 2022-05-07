@@ -23,11 +23,12 @@ import java.net.URI;
 import java.time.LocalDate;
 
 @RestController
-@RequestMapping(value = "/api")
+@RequestMapping(value = MenuController.URL, produces = MediaType.APPLICATION_JSON_VALUE)
 @AllArgsConstructor
 @Slf4j
 @Tag(name = "Menu Controller")
 public class MenuController {
+    static final String URL = "/api";
 
     private final MenuRepository menuRepository;
     private final RestaurantRepository restaurantRepository;

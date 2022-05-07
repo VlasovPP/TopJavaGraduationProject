@@ -32,6 +32,12 @@ import java.util.List;
 @AllArgsConstructor
 public class Menu extends BaseEntity implements Serializable {
 
+    public Menu(Integer id, LocalDate date, Restaurant restaurant, List<Dish> dishes) {
+        this.id = id;
+        this.date = date;
+        this.restaurant = restaurant;
+        this.dishes = dishes;
+    }
     @NotNull
     @Column(name = "added", nullable = false)
     private LocalDate date = LocalDate.now();

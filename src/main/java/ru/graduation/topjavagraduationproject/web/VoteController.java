@@ -28,11 +28,12 @@ import java.time.LocalTime;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/user/restaurant/vote")
+@RequestMapping(value = VoteController.URL, produces = MediaType.APPLICATION_JSON_VALUE)
 @AllArgsConstructor
 @Slf4j
 @Tag(name = "Vote Controller")
 public class VoteController {
+    static final String URL = "/api/user/restaurant/vote";
 
     private final VoteRepository voteRepository;
     private final RestaurantRepository restaurantRepository;
