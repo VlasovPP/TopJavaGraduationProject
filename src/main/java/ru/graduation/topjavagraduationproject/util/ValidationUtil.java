@@ -1,8 +1,10 @@
 package ru.graduation.topjavagraduationproject.util;
 
+import lombok.experimental.UtilityClass;
 import ru.graduation.topjavagraduationproject.error.IllegalRequestDataException;
 import ru.graduation.topjavagraduationproject.model.BaseEntity;
 
+@UtilityClass
 public class ValidationUtil {
 
     public static void checkNew(BaseEntity entity) {

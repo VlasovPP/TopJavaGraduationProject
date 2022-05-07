@@ -17,15 +17,16 @@ import ru.graduation.topjavagraduationproject.util.ValidationUtil;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.Set;
+import java.util.EnumSet;
+
 
 @RestController
-@RequestMapping(value = "/api/account")
+@RequestMapping(AccountController.URL)
 @AllArgsConstructor
 @Slf4j
 @Tag(name = "Account Controller")
 public class AccountController {
-
+    static final String URL = "/api/account";
     private final UserRepository userRepository;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -46,7 +47,7 @@ public class AccountController {
     public ResponseEntity<User> register(@Valid @RequestBody User user) {
         log.info("register {}", user);
         ValidationUtil.checkNew(user);
-        user.setRoles(Set.of(Role.USER));
+        user.setRoles(EnumSet.of(Role.USER));
         user = userRepository.save(user);
         URI uriOfNewResource = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/api/account")

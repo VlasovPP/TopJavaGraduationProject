@@ -25,6 +25,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.Collection;
+import java.util.EnumSet;
 import java.util.Set;
 
 @Entity
