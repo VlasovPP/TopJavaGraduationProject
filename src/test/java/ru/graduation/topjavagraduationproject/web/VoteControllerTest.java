@@ -36,19 +36,6 @@ class VoteControllerTest extends AbstractControllerTest {
     UserRepository userRepository;
 
     @Test
-    @WithUserDetails(value = USER_MAIL)
-    void addVoteByRestaurantId() throws Exception {
-        Restaurant restaurantOne = restaurantRepository.findById(RESTAURANT1_ID).orElseThrow();
-        Vote created = new Vote(LocalDate.now(), null, restaurantOne);
-        perform(MockMvcRequestBuilders.post(USER_URL)
-                .contentType(MediaType.APPLICATION_JSON)
-                .param("restaurantId", String.valueOf(RESTAURANT1_ID)))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonMatcher(created, VoteTestUtil::assertNoIdEquals));
-    }
-
-    @Test
     @WithUserDetails(value = ADMIN_MAIL)
     void changeVoteByRestaurantId() throws Exception {
         Restaurant restaurantOne = restaurantRepository.findById(RESTAURANT2_ID).orElseThrow();

@@ -14,7 +14,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import ru.graduation.topjavagraduationproject.model.Role;
 import ru.graduation.topjavagraduationproject.model.User;
 import ru.graduation.topjavagraduationproject.repository.UserRepository;
-import ru.graduation.topjavagraduationproject.util.ValidationUtil;
+import ru.graduation.topjavagraduationproject.util.validation.ValidationUtil;
 
 import javax.validation.Valid;
 import java.net.URI;

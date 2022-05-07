@@ -1,4 +1,4 @@
-package ru.graduation.topjavagraduationproject.util;
+package ru.graduation.topjavagraduationproject.util.validation;
 
 import lombok.experimental.UtilityClass;
 import org.springframework.core.NestedExceptionUtils;

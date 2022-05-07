@@ -47,18 +47,6 @@ class AccountControllerTest extends AbstractControllerTest {
         Assertions.assertFalse(userRepository.findById(USER_ID).isPresent());
         Assertions.assertTrue(userRepository.findById(ADMIN_ID).isPresent());
     }
-    @Test
-    void register() throws Exception {
-        User newUser = UserTestUtil.getNew();
-        User registered = asUser(perform(MockMvcRequestBuilders.post(URL + "/register")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(writeValue(newUser)))
-                .andExpect(status().isCreated()).andReturn());
-        int newId = registered.id();
-        newUser.setId(newId);
-        UserTestUtil.assertEquals(registered, newUser);
-        UserTestUtil.assertEquals(registered, userRepository.findById(newId).orElseThrow());
-    }
 
     @Test
     @WithUserDetails(value = USER_MAIL)

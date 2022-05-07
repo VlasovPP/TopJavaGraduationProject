@@ -3,8 +3,6 @@ package ru.graduation.topjavagraduationproject.web;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.crossstore.ChangeSetPersister;
-import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +14,7 @@ import ru.graduation.topjavagraduationproject.model.Restaurant;
 import ru.graduation.topjavagraduationproject.repository.MenuRepository;
 import ru.graduation.topjavagraduationproject.repository.RestaurantRepository;
 import ru.graduation.topjavagraduationproject.to.MenuTo;
-import ru.graduation.topjavagraduationproject.util.ValidationUtil;
+import ru.graduation.topjavagraduationproject.util.validation.ValidationUtil;
 
 import javax.validation.Valid;
 import java.net.URI;

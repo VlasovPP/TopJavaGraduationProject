@@ -10,6 +10,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.util.StringUtils;
 import ru.graduation.topjavagraduationproject.util.JsonDeserializers;
+import ru.graduation.topjavagraduationproject.util.validation.NoHtml;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -23,7 +24,6 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Collection;
@@ -47,14 +47,17 @@ public class User extends BaseEntity implements Serializable {
     @Email
     @NotBlank
     @Size(max = 128)
+    @NoHtml
     private String email;
 
     @Column(name = "first_name")
     @Size(max = 128)
+    @NoHtml
     private String firstName;
 
     @Column(name = "last_name")
     @Size(max = 128)
+    @NoHtml
     private String lastName;
 
     @Column(name = "password")

@@ -27,16 +27,6 @@ class MenuControllerTest extends AbstractControllerTest {
     private MenuRepository menuRepository;
 
     @Test
-    @WithUserDetails(value = USER_MAIL)
-    void getTodayMenuByRestaurantId() throws Exception {
-        perform(MockMvcRequestBuilders.get(USER_URL + RESTAURANT1_ID + "/today"))
-                .andExpect(status().isOk())
-                .andDo(print())
-                .andExpect(content().contentTypeCompatibleWith(MediaTypes.HAL_JSON_VALUE))
-                .andExpect(jsonMatcher(getToday(), MenuTestUtil::assertEquals));
-    }
-
-    @Test
     @WithUserDetails(value = ADMIN_MAIL)
     void createTodayMenuByRestaurantId() throws Exception {
         Menu newMenu = MenuTestUtil.getNew();
@@ -46,26 +36,5 @@ class MenuControllerTest extends AbstractControllerTest {
                 .andDo(print())
                 .andExpect(status().isCreated())
                 .andExpect(jsonMatcher(newMenu, MenuTestUtil::assertEquals));
-    }
-
-    @Test
-    @WithUserDetails(value = ADMIN_MAIL)
-    void updateTodayMenuByRestaurantId() throws Exception {
-        Menu updated = MenuTestUtil.getUpdated();
-        perform(MockMvcRequestBuilders.put(ADMIN_URL + RESTAURANT1_ID + "/today")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(writeValue(updated)))
-                .andDo(print())
-                .andExpect(status().isNoContent());
-        MenuTestUtil.assertEquals(updated, menuRepository.findById(RESTAURANT1_ID).orElseThrow());
-    }
-
-    @Test
-    @WithUserDetails(value = ADMIN_MAIL)
-    void deleteTodayMenuByRestaurantId() throws Exception {
-        perform(MockMvcRequestBuilders.delete(ADMIN_URL + RESTAURANT1_ID + "/today"))
-                .andExpect(status().isNoContent())
-                .andDo(print());
-        assertFalse(menuRepository.findById(RESTAURANT1_ID).isPresent());
     }
 }
