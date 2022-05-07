@@ -67,7 +67,7 @@ public class RestaurantController {
         restaurantRepository.deleteById(id);
     }
 
-    @GetMapping(value = "/user/restaurants/by-name", produces = MediaTypes.HAL_JSON_VALUE)
+    @GetMapping(value = "/user/restaurants/by-name", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Restaurant> getAllByName(@RequestParam String name) {
         log.info("getAllByName {}", name);
         return restaurantRepository.findAllByNameIsContainingIgnoreCase(name);

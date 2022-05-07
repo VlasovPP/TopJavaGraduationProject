@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,8 +21,8 @@ import ru.graduation.topjavagraduationproject.model.User;
 import ru.graduation.topjavagraduationproject.repository.UserRepository;
 import ru.graduation.topjavagraduationproject.util.JsonUtil;
 
+import javax.annotation.PostConstruct;
 import java.util.Optional;
-
 
 @Configuration
 @EnableWebSecurity
@@ -33,21 +32,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     public static final PasswordEncoder PASSWORD_ENCODER = PasswordEncoderFactories.createDelegatingPasswordEncoder();
     private final UserRepository userRepository;
+    private final ObjectMapper objectMapper;
 
-    @Autowired
-    private void setMapper(ObjectMapper objectMapper) {
+    @PostConstruct
+    void setMapper() {
         JsonUtil.setObjectMapper(objectMapper);
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return email -> {
+            log.debug("Authenticating '{}'", email);
+            Optional<User> optionalUser = userRepository.findByEmailIgnoreCase(email);
+            return new AuthUser(optionalUser.orElseThrow(
+                    () -> new UsernameNotFoundException("User '" + email + "' was not found")));
+        };
     }
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(
-                        email -> {
-                            log.debug("Authenticating '{}'", email);
-                            Optional<User> optionalUser = userRepository.findByEmailIgnoreCase(email);
-                            return new AuthUser(optionalUser.orElseThrow(
-                                    () -> new UsernameNotFoundException("User '" + email + "' was not found")));
-                        })
+        auth.userDetailsService(userDetailsService())
                 .passwordEncoder(PASSWORD_ENCODER);
     }
 
