@@ -1,4 +1,4 @@
-package ru.graduation.topjavagraduationproject;
+package ru.graduation.topjavagraduationproject.web;
 
 import lombok.Getter;
 import lombok.ToString;

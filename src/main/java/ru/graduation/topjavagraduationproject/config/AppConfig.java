@@ -14,8 +14,9 @@ import java.sql.SQLException;
 @EnableCaching
 public class AppConfig {
 
+    @Profile("!test")
     @Bean(initMethod = "start", destroyMethod = "stop")
-    public Server h2Server() throws SQLException {
+    Server h2Server() throws SQLException {
         log.info("Start H2 TCP server");
         return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort", "9092");
     }

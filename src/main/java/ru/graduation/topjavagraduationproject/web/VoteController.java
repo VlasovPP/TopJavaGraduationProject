@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import ru.graduation.topjavagraduationproject.AuthUser;
 import ru.graduation.topjavagraduationproject.error.NotFoundException;
 import ru.graduation.topjavagraduationproject.model.Restaurant;
 import ru.graduation.topjavagraduationproject.model.User;
